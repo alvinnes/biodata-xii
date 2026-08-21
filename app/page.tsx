@@ -1,69 +1,68 @@
-import Image from "next/image";
+import { ArrowDownCircleIcon, ArrowUpRightFromCircleIcon } from "lucide-react";
+import RotatingText from "../components/RotatingText";
 
-export default function Home() {
+const page = () => {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+    <main className="w-full min-h-screen bg-white font-montserrat">
+      <section className="w-full h-screen relative flex justify-evenly items-center">
+        <div className="w-2xl text-[#1b1b1b] flex flex-col gap-8">
+          <div className="flex items-center gap-4 ml-2">
+            <h2 className="font-semibold">I'm a</h2>
+            <RotatingText
+              texts={[
+                "FulStack Developer",
+                "DevOps Engineer",
+                "Network Engineer",
+              ]}
+              mainClassName="px-2 sm:px-4 md:px-6 bg-[#FDF0D5] font-semibold text-black w-fit overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+              staggerFrom="last"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-120%" }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+              rotationInterval={2000}
+              splitBy="characters"
+              auto
+              loop
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <h1 className="text-8xl font-bold">Hi I'm Alvin</h1>
+          <p className="text-sm w-9/12 leading-relaxed ml-1">
+            Karya yang hebat tidak sekadar dilihat, tapi dirasakan. Hai! Aku
+            Alvin, seorang FullStack Developer yang fokus membangun pengalaman
+            visual yang membuat orang terpukau dengan website saya. Mari
+            jelajahi apa yang sudah aku bangun sejauh ini.
+          </p>
+          <div className="flex gap-6 mt-8">
+            <button className="px-8 cursor-pointer bg-amber-500 py-4 rounded-full text-white text-sm font-semibold">
+              <a href="" className="flex items-center gap-2">
+                <ArrowUpRightFromCircleIcon className="size-4" />
+                Baca Selengkapnya
+              </a>
+            </button>
+            <button className="px-8 relative rounded-full border-amber-300  overflow-hidden cursor-pointer before:size-full before:absolute before:left-0 before:bottom-0 before:bg-amber-400 before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition-all before:duration-600 border text-sm font-semibold">
+              <a href="" className="relative z-2 flex items-center gap-2">
+                <ArrowDownCircleIcon className="size-5" strokeWidth={1} /> Lihat
+                Project
+              </a>
+            </button>
+          </div>
         </div>
-      </main>
-    </div>
+        <div className="w-xl -mr-30">
+          <div className="w-lg h-150 rounded-t-full mt-10 bg-[#FDF0D5] overflow-hidden">
+            <img
+              src="img/image-hero.png"
+              alt="foto-hero"
+              className="size-[150%] object-cover -mt-35 ml-6 drop-shadow-2xl"
+            />
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full h-25 bg-[#FFF0D9]"></div>
+      </section>
+    </main>
   );
-}
+};
+
+export default page;
