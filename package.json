@@ -13,6 +13,8 @@
     "@phosphor-icons/react": "github:phosphor-icons/react",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gl-matrix": "^3.4.4",
+    "gsap": "^3.15.0",
     "lucide-react": "^1.33.0",
     "motion": "^12.43.0",
     "next": "16.3.1",
