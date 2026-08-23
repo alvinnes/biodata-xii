@@ -1,267 +1,180 @@
 "use client";
 
-import {
-  ArrowDownCircleIcon,
-  ArrowUpRightFromCircleIcon,
-  ExpandIcon,
-  MoveRightIcon,
-  XIcon,
-} from "lucide-react";
-import RotatingText from "./components/RotatingText";
-import TextType from "./components/TextType";
-import AccordionGallery from "./components/AccordionGallery";
-import { useState } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useSpring } from "motion/react";
+import HeroSection from "./components/HeroSection";
+import AboutSection from "./components/AboutSection";
+import CertificateSection from "./components/CertificateSection";
+import BlogSection from "./components/BlogSection";
+import ContactSection from "./components/ContactSection";
+import ProjectSection from "./components/ProjectSection";
+import SkillsSection from "./components/SkillsSection";
 
-const items = [
-  {
-    image: "https://picsum.photos/id/1015/900/1200",
-    link: "#",
-  },
-  {
-    image: "https://picsum.photos/id/1018/900/1200",
-    link: "#",
-  },
-  {
-    image: "https://picsum.photos/id/1039/900/1200",
-    link: "#",
-  },
-  {
-    image: "https://picsum.photos/id/1043/900/1200",
-    link: "#",
-  },
-];
-
-interface CertificateItemsStruct {
+interface NavItemsStruct {
   id: number;
-  img: string;
-  alt: string;
-  title: string;
+  link: string;
+  text: string;
 }
 
-const certificateItems = [
+const navItems: NavItemsStruct[] = [
   {
     id: 1,
-    img: "img/sertifikat/web-development.jpg",
-    alt: "sertifikat-web-development",
-    title: "Peserta Web Development & Web Design Tingkat Provinsi 2025",
+    link: "#tentang",
+    text: "Tentang",
   },
   {
     id: 2,
-    img: "img/sertifikat/lks-kabupaten.jpg",
-    alt: "sertifikat-lks-kabupaten",
-    title:
-      "Juara I LKS IT Network Systems Administration Tingkat Kabupaten 2026",
+    link: "#skill",
+    text: "Keahlian",
   },
   {
     id: 3,
-    img: "img/sertifikat/lks-jateng.png",
-    alt: "sertifikat-lks-jateng",
-    title:
-      "Juara IV LKS IT Network Systems Administration Tingkat Provinsi 2026",
+    link: "#sertifikat",
+    text: "Sertifikat",
+  },
+  {
+    id: 4,
+    link: "#proyek",
+    text: "Proyek",
+  },
+  {
+    id: 5,
+    link: "#pendidikan",
+    text: "Pendidikan",
+  },
+  {
+    id: 6,
+    link: "#blog",
+    text: "Blog",
+  },
+  {
+    id: 7,
+    link: "#kontak",
+    text: "Kontak",
   },
 ];
 
 const page = () => {
-  const [isClickedCertificate, setIsClickedCertificate] = useState(false);
-  const [imgCertificate, setimgCertificate] = useState<string | undefined>(
-    undefined,
-  );
-
-  const handleDetailCertificate = (img: string) => {
-    setIsClickedCertificate(!isClickedCertificate);
-    setimgCertificate(img);
-  };
   return (
-    <main className="w-full min-h-screen bg-white font-montserrat">
+    <main className="w-full min-h-screen bg-slate-50 font-montserrat text-slate-800">
+      <nav className="w-full fixed left-0 top-0 z-999 bg-white/70 backdrop-blur-md border-b border-slate-200 py-8 flex justify-around items-center transition-all duration-300">
+        <h3 className="text-xl font-bold font-heading text-blue-700">
+          <a href="#">Alvinnes</a>
+        </h3>
+        <ul className="flex gap-10 font-medium text-slate-600">
+          {navItems.map((item) => (
+            <li
+              key={item.id}
+              className="hover:text-blue-600 after:block after:border-b-2 after:border-b-blue-600 after:-mt-0.5 after:scale-x-0 after:transition-all after:duration-500 hover:after:scale-x-100 after:origin-left"
+            >
+              <a href={item.link}>{item.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <HeroSection />
       <AboutSection />
-      <section className="flex flex-col py-30 items-center w-full h-screen">
-        <div className="w-xl text-center">
-          <h2 className="text-4xl font-semibold">Pencapaian & Sertifikat</h2>
-          <p className="leading-relaxed mt-8">
-            Setiap sertifikat di sini punya ceritanya sendiri—mulai dari proses
-            trial and error, malam-malam panjang untuk coding, hingga akhirnya
-            berhasil menaklukkan tantangan baru. Intip beberapa pencapaian yang
-            menandai perjalananku sejauh ini!
-          </p>
-        </div>
-        <div className="flex flex-wrap justify-between w-11/12 mt-20">
-          {certificateItems.map((item) => (
-            <div
-              key={item.id}
-              className="w-110 h-80 p-3 rounded-md overflow-hidden bg-slate-700 text-white"
-            >
-              <div
-                onClick={() => handleDetailCertificate(item.img)}
-                className="w-full relative h-55 rounded-xl overflow-hidden bg-white group"
-              >
-                <img src={item.img} alt={item.alt} className="size-full" />
-                <div className="size-full absolute flex justify-center items-center text-white cursor-pointer opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500  left-0 bottom-0 bg-black/50">
-                  <ExpandIcon className="size-10" />
-                </div>
-                <div
-                  className={`w-full h-screen bg-white/10 backdrop-blur-2xl fixed top-0 left-0 flex justify-center items-center transition-all duration-500 z-999 ${isClickedCertificate ? "opacity-100 visible" : "opacity-0 invisible"}`}
-                >
-                  <div className="w-10/12 h-[80vh] rounded-xl relative shadow-xl bg-white">
-                    <button
-                      onClick={() =>
-                        setIsClickedCertificate(!isClickedCertificate)
-                      }
-                      className="absolute transition-all duration-500 hover:rotate-360 -top-3 -right-3 size-8 bg-slate-600 text-white rounded-full flex justify-center items-center cursor-pointer p-2"
-                    >
-                      <XIcon />
-                    </button>
-                    <img
-                      src={imgCertificate}
-                      alt="foto-sertifikat"
-                      className="size-full"
-                    />
-                  </div>
-                </div>
-              </div>
-              <h3 className="font-semibold w-10/12 mt-5">{item.title}</h3>
-            </div>
-          ))}
-        </div>
-      </section>
+      <SkillsSection />
+      <CertificateSection />
+      <ProjectSection />
+      <EducationSection />
+      <BlogSection />
+      <ContactSection />
     </main>
   );
 };
 
-const HeroSection = () => {
+const EducationSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  const educationData = [
+    {
+      id: 1,
+      year: "2021 - 2024",
+      school: "Sekolah Menengah Pertama",
+      description:
+        "Mempelajari dasar-dasar ilmu pengetahuan dan mulai tertarik dengan dunia teknologi digital dan komputer.",
+    },
+    {
+      id: 2,
+      year: "2024 - Sekarang",
+      school: "SMK Walisongo Pecangaan",
+      description:
+        "Siswa jurusan Teknik Komputer dan Jaringan (TKJ). Mendalami ilmu jaringan, pengembangan perangkat lunak, dan administrasi sistem.",
+    },
+    {
+      id: 3,
+      year: "2025 - 2026",
+      school: "Sertifikasi & Pelatihan IT",
+      description:
+        "Aktif mengikuti berbagai kompetisi (LKS) dan pelatihan intensif untuk mengasah skill Web Development dan Manajemen Jaringan.",
+    },
+  ];
+
   return (
-    <section className="w-full h-screen relative flex justify-evenly items-center">
-      <div className="w-2xl text-[#1b1b1b] flex flex-col gap-8">
-        <div className="flex items-center gap-4 ml-2">
-          <h2 className="font-semibold">I'm a</h2>
-          <RotatingText
-            texts={[
-              "FulStack Developer",
-              "DevOps Engineer",
-              "Network Engineer",
-            ]}
-            mainClassName="px-2 sm:px-4 md:px-6 bg-[#FDF0D5] font-semibold text-black w-fit overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-            staggerFrom="last"
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-120%" }}
-            staggerDuration={0.025}
-            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-            transition={{ type: "spring", damping: 30, stiffness: 400 }}
-            rotationInterval={2000}
-            splitBy="characters"
-            auto
-            loop
+    <section
+      id="pendidikan"
+      className="w-10/12 mx-auto flex flex-col items-center mt-100"
+    >
+      <div className="w-xl text-center mb-20">
+        <h2 className="text-4xl font-semibold font-heading text-slate-900">
+          Riwayat Pendidikan
+        </h2>
+        <p className="leading-relaxed mt-8 text-slate-600">
+          Perjalanan belajarku yang membentuk dasar pengetahuanku di bidang
+          teknologi saat ini.
+        </p>
+      </div>
+
+      <div ref={containerRef} className="relative w-full mx-auto py-10 pl-8">
+        <div className="absolute left-0 top-0 w-1 h-full bg-slate-200 rounded-full overflow-hidden">
+          <motion.div
+            className="w-full bg-blue-500 origin-top h-full"
+            style={{ scaleY: scaleY }}
           />
         </div>
-        <h1 className="text-8xl font-bold">Hi I'm Alvin</h1>
-        <p className="text-sm w-9/12 leading-relaxed ml-1">
-          Karya yang hebat tidak sekadar dilihat, tapi dirasakan. Hai! Aku
-          Alvin, seorang FullStack Developer yang fokus membangun pengalaman
-          visual yang membuat orang terpukau dengan website saya. Mari jelajahi
-          apa yang sudah aku bangun sejauh ini.
-        </p>
-        <div className="flex gap-6 mt-8">
-          <button className="px-8 cursor-pointer bg-amber-500 py-4 rounded-full text-white text-sm font-semibold">
-            <a href="" className="flex items-center gap-2">
-              <ArrowUpRightFromCircleIcon className="size-4" />
-              Baca Selengkapnya
-            </a>
-          </button>
-          <button className="px-8 relative rounded-full border-amber-300  overflow-hidden cursor-pointer before:size-full before:absolute before:left-0 before:bottom-0 before:bg-amber-400 before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition-all before:duration-600 border text-sm font-semibold">
-            <a href="" className="relative z-2 flex items-center gap-2">
-              <ArrowDownCircleIcon className="size-5" strokeWidth={1} /> Lihat
-              Project
-            </a>
-          </button>
-        </div>
-      </div>
-      <div className="w-xl -mr-30">
-        <div className="w-lg h-150 rounded-t-full mt-10 bg-[#FDF0D5] overflow-hidden">
-          <img
-            src="img/image-hero.png"
-            alt="foto-hero"
-            className="size-[150%] object-cover -mt-35 ml-6 drop-shadow-2xl"
-          />
-        </div>
-      </div>
-      <div className="absolute bottom-0 left-0 w-full h-25 bg-[#FFF0D9]"></div>
-    </section>
-  );
-};
 
-const AboutSection = () => {
-  return (
-    <section className="w-full  flex justify-center items-center gap-15 py-30">
-      <div className="w-1/2 px-8">
-        <AccordionGallery
-          items={items}
-          defaultIndex={2}
-          expandRatio={0.52}
-          trigger="hover"
-          accentColor="#ffffff"
-          overlayColor="#060010"
-          textColor="#ffffff"
-          grayscale
-          duration={0.6}
-          ease="back.out"
-          parallax={0.5}
-          tilt={8}
-          stagger={0.06}
-          height={560}
-          gap={10}
-          radius={16}
-          orientation="horizontal"
-        />
-      </div>
-      <div className="w-xl flex gap-6 flex-col">
-        <h2 className="text-4xl font-bold">Halo, Mari Berkenalan</h2>
-        <TextType
-          text={[
-            "I'm a Fullstack Developer",
-            "I'm a Devops Engineer",
-            "I'm a Network Engineer",
-          ]}
-          typingSpeed={75}
-          pauseDuration={1500}
-          showCursor
-          cursorCharacter="_"
-          deletingSpeed={50}
-          cursorBlinkDuration={0.5}
-          className="font-semibold text-xl text-[#F9B637]"
-        />
-        <p className="leading-relaxed">
-          Halo, nama saya <b>Alvin Nando Erik Saputra</b>, siswa kelas 11 di{" "}
-          <b>SMK Walisongo Pecangaan</b>, jurusan{" "}
-          <b>Teknik Komputer dan Jaringan</b>. Saya memiliki minat yang besar di
-          dunia teknologi, khususnya dalam pengembangan perangkat lunak,
-          jaringan komputer, dan sistem digital. Sejak awal masa studi, saya
-          terus mengembangkan kemampuan teknis dan profesional untuk
-          mempersiapkan karier masa depan saya sebagai{" "}
-          <b>
-            <i>Software Engineer</i>
-          </b>
-          .
-        </p>
+        <div className="flex flex-col gap-30">
+          {educationData.map((item, index) => (
+            <div key={item.id} className="relative w-2xl">
+              <motion.div
+                className="absolute -left-41 top-5 w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-md z-10"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.4 }}
+              />
 
-        <p className="leading-relaxed">
-          Saat ini, saya telah mendalami pengembangan aplikasi web sebagai{" "}
-          <b>
-            <i>Fullstack Developer</i>
-          </b>
-          , dengan fokus utama pada <b>React.js</b> untuk pengembangan{" "}
-          <i>frontend</i>, sambil terus meningkatkan kemampuan saya di bagian{" "}
-          <i>backend</i>. Saya selalu berusaha mempelajari teknologi baru dan
-          mengerjakan berbagai proyek untuk menambah pengalaman.
-        </p>
-        <div className="flex items-end gap-8">
-          <button className="px-8 py-3 rounded-md bg-amber-400 text-sm font-semibold">
-            <a href="">Keahlian Saya</a>
-          </button>
-          <a href="" className="flex items-center gap-2 text-sm underline">
-            Hubungi Saya
-            <MoveRightIcon className="size-4" />
-          </a>
+              <motion.div
+                className="w-full text-left pl-6"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+              >
+                <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 group">
+                  <span className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-bold tracking-wider mb-3">
+                    {item.year}
+                  </span>
+                  <h3 className="text-xl font-bold font-heading text-slate-800 group-hover:text-blue-600 transition-colors">
+                    {item.school}
+                  </h3>
+                  <p className="mt-3 text-slate-600 leading-relaxed text-sm">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
