@@ -2,6 +2,8 @@ import { useState } from "react";
 import OptionWheel from "./OptionWheel";
 import skillsItem from "../datas/skillsItem";
 import { motion, AnimatePresence } from "motion/react";
+import AnimatedItem from "./AnimatedItem";
+import FadeContent from "./FadeContent";
 
 const SkillsSection = () => {
   const [menuSkills, setMenuSkills] = useState("Linux Administrator");
@@ -16,17 +18,27 @@ const SkillsSection = () => {
   return (
     <section id="skill" className="flex flex-col py-40 items-center w-full">
       <div className="w-11/12">
-        <h2 className="text-4xl font-semibold font-heading text-slate-900">
-          Tech Stack & Keahlian
-        </h2>
-        <p className="leading-relaxed w-xl mt-8 text-slate-600">
-          Memadukan logika pemrograman dengan keandalan sistem jaringan. Silakan
-          jelajahi berbagai teknologi yang terus aku kembangkan.
-        </p>
+        <AnimatedItem direction="horizontal" reverse={true}>
+          <h2 className="text-4xl font-semibold font-heading text-slate-900">
+            Tech Stack & Keahlian
+          </h2>
+        </AnimatedItem>
+        <AnimatedItem direction="horizontal" reverse={true} delay={0.3}>
+          <p className="leading-relaxed w-xl mt-8 text-slate-600">
+            Memadukan logika pemrograman dengan keandalan sistem jaringan.
+            Silakan jelajahi berbagai teknologi yang terus aku kembangkan.
+          </p>
+        </AnimatedItem>
       </div>
 
-      <div className="w-11/12 flex relative justify-between items-center mt-20">
-        <div className="h-150">
+      <div className="w-11/12 flex flex-col lg:flex-row relative justify-between items-center mt-10 lg:mt-20 gap-10 lg:gap-0">
+        <FadeContent
+          blur={true}
+          duration={2000}
+          delay={0.6}
+          initialOpacity={0}
+          className="h-[400px] lg:h-150 w-full lg:w-auto flex justify-center lg:block"
+        >
           <OptionWheel
             items={[
               "Web & IoT Development",
@@ -52,10 +64,13 @@ const SkillsSection = () => {
             soundUrl="/assets/sounds/click-soft.mp3"
             soundVolume={0.5}
             onChange={(index, item) => handleSkillsClick(index, item)}
-            className="w-xl self-start"
+            className="w-full sm:w-[400px] lg:w-xl self-start"
           />
-        </div>
-        <div className="w-8/12 h-120 overflow-hidden rounded-3xl bg-slate-100/50 p-2 backdrop-blur-2xl border border-white/50 shadow-2xl relative">
+        </FadeContent>
+        <AnimatedItem
+          direction="horizontal"
+          className="w-full lg:w-8/12 h-[500px] lg:h-120 overflow-hidden rounded-3xl bg-slate-100/50 p-2 backdrop-blur-2xl border border-white/50 shadow-2xl relative"
+        >
           <div
             className="h-full w-full overflow-y-auto p-6 flex flex-col"
             style={{
@@ -111,7 +126,7 @@ const SkillsSection = () => {
               </AnimatePresence>
             </div>
           </div>
-        </div>
+        </AnimatedItem>
       </div>
     </section>
   );

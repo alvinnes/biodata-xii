@@ -1,5 +1,7 @@
 import { ExpandIcon, XIcon } from "lucide-react";
 import { useState } from "react";
+import FadeContent from "./FadeContent";
+import AnimatedItem from "./AnimatedItem";
 
 interface CertificateItemsStruct {
   id: number;
@@ -44,24 +46,32 @@ const CertificateSection = () => {
   return (
     <section
       id="sertifikat"
-      className="flex flex-col py-30 items-center w-full h-screen"
+      className="flex flex-col py-20 md:py-30 items-center w-full min-h-screen"
     >
-      <div className="w-xl text-center">
-        <h2 className="text-4xl font-semibold font-heading text-slate-900">
-          Pencapaian & Sertifikat
-        </h2>
-        <p className="leading-relaxed mt-8 text-slate-600">
-          Setiap sertifikat di sini punya ceritanya sendiri—mulai dari proses
-          trial and error, malam-malam panjang untuk coding, hingga akhirnya
-          berhasil menaklukkan tantangan baru. Intip beberapa pencapaian yang
-          menandai perjalananku sejauh ini!
-        </p>
+      <div className="w-11/12 md:w-xl text-center">
+        <AnimatedItem direction="vertical" reverse={true} delay={0.3}>
+          <h2 className="text-4xl font-semibold font-heading text-slate-900">
+            Pencapaian & Sertifikat
+          </h2>
+        </AnimatedItem>
+        <AnimatedItem direction="vertical" reverse={true} delay={0.1}>
+          <p className="leading-relaxed mt-8 text-slate-600">
+            Setiap sertifikat di sini punya ceritanya sendiri—mulai dari proses
+            trial and error, malam-malam panjang untuk coding, hingga akhirnya
+            berhasil menaklukkan tantangan baru. Intip beberapa pencapaian yang
+            menandai perjalananku sejauh ini!
+          </p>
+        </AnimatedItem>
       </div>
-      <div className="flex flex-wrap justify-between w-11/12 mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 mt-10 md:mt-20">
         {certificateItems.map((item) => (
-          <div
+          <FadeContent
             key={item.id}
-            className="w-110 h-80 p-3 rounded-2xl overflow-hidden bg-slate-900 text-white border border-slate-800 shadow-xl"
+            blur={true}
+            duration={2000}
+            delay={0.2}
+            initialOpacity={0}
+            className="w-full h-80 p-3 rounded-2xl overflow-hidden bg-slate-900 text-white border border-slate-800 shadow-xl flex flex-col justify-between"
           >
             <div
               onClick={() => handleDetailCertificate(item.img)}
@@ -92,7 +102,7 @@ const CertificateSection = () => {
               </div>
             </div>
             <h3 className="font-semibold w-10/12 mt-5">{item.title}</h3>
-          </div>
+          </FadeContent>
         ))}
       </div>
     </section>

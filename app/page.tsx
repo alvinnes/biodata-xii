@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useSpring } from "motion/react";
+import { useState } from "react";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import CertificateSection from "./components/CertificateSection";
@@ -9,6 +8,16 @@ import BlogSection from "./components/BlogSection";
 import ContactSection from "./components/ContactSection";
 import ProjectSection from "./components/ProjectSection";
 import SkillsSection from "./components/SkillsSection";
+import EducationSection from "./components/EducationSection";
+import {
+  FacebookLogoIcon,
+  GithubLogoIcon,
+  InstagramLogoIcon,
+  LinkedinLogoIcon,
+  TiktokLogoIcon,
+  XLogoIcon,
+} from "@phosphor-icons/react";
+import { MenuIcon, XIcon } from "lucide-react";
 
 interface NavItemsStruct {
   id: number;
@@ -55,13 +64,17 @@ const navItems: NavItemsStruct[] = [
 ];
 
 const page = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <main className="w-full min-h-screen bg-slate-50 font-montserrat text-slate-800">
-      <nav className="w-full fixed left-0 top-0 z-999 bg-white/70 backdrop-blur-md border-b border-slate-200 py-8 flex justify-around items-center transition-all duration-300">
+      <nav className="w-full fixed left-0 top-0 z-50 bg-white/70 backdrop-blur-md border-b border-slate-200 py-6 px-6 md:px-0 md:py-8 flex justify-between md:justify-around items-center transition-all duration-300">
         <h3 className="text-xl font-bold font-heading text-blue-700">
           <a href="#">Alvinnes</a>
         </h3>
-        <ul className="flex gap-10 font-medium text-slate-600">
+
+        {/* Desktop Nav */}
+        <ul className="hidden md:flex gap-10 font-medium text-slate-600">
           {navItems.map((item) => (
             <li
               key={item.id}
@@ -71,6 +84,30 @@ const page = () => {
             </li>
           ))}
         </ul>
+
+        {/* Mobile Nav Toggle */}
+        <button 
+          className="md:hidden text-slate-700 focus:outline-none" 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
+        </button>
+
+        {/* Mobile Nav Menu */}
+        {isMenuOpen && (
+          <div className="absolute top-full left-0 w-full bg-white shadow-lg border-b border-slate-200 py-4 flex flex-col items-center gap-4 md:hidden">
+            {navItems.map((item) => (
+              <a 
+                key={item.id} 
+                href={item.link} 
+                className="font-medium text-slate-600 hover:text-blue-600 transition-colors w-full text-center py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.text}
+              </a>
+            ))}
+          </div>
+        )}
       </nav>
       <HeroSection />
       <AboutSection />
@@ -80,104 +117,55 @@ const page = () => {
       <EducationSection />
       <BlogSection />
       <ContactSection />
+
+      <footer className="w-full h-50 border-t flex-col gap-3 border-[#808080]/20 flex justify-center items-center">
+        <div className="flex gap-4 items-center">
+          <a
+            target="_blank"
+            className="transition-all duration-500 hover:-translate-y-1"
+            href="https://www.instagram.com/alvinnes__"
+          >
+            <InstagramLogoIcon className="size-6" />
+          </a>
+          <a
+            target="_blank"
+            className="transition-all duration-500 hover:-translate-y-1"
+            href="https://www.tiktok.com/@alvinnes_?_r=1&_t=ZS-997v4DhUHsQ"
+          >
+            <TiktokLogoIcon className="size-6" />
+          </a>
+          <a
+            target="_blank"
+            className="transition-all duration-500 hover:-translate-y-1"
+            href="https://www.linkedin.com/in/alvinnes"
+          >
+            <LinkedinLogoIcon className="size-6" />
+          </a>
+          <a
+            target="_blank"
+            className="transition-all duration-500 hover:-translate-y-1"
+            href="https://www.facebook.com/share/198k9i2WgB/"
+          >
+            <FacebookLogoIcon className="size-6" />
+          </a>
+          <a
+            target="_blank"
+            className="transition-all duration-500 hover:-translate-y-1"
+            href="https://x.com/Erik_Niceboy"
+          >
+            <XLogoIcon className="size-6" />
+          </a>
+          <a
+            target="_blank"
+            className="transition-all duration-500 hover:-translate-y-1"
+            href="https://github.com/alvinnes"
+          >
+            <GithubLogoIcon className="size-6" />
+          </a>
+        </div>
+        <p className="text-sm">2026 Alvinnes. All Rights Reserved</p>
+      </footer>
     </main>
-  );
-};
-
-const EducationSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"],
-  });
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const educationData = [
-    {
-      id: 1,
-      year: "2021 - 2024",
-      school: "Sekolah Menengah Pertama",
-      description:
-        "Mempelajari dasar-dasar ilmu pengetahuan dan mulai tertarik dengan dunia teknologi digital dan komputer.",
-    },
-    {
-      id: 2,
-      year: "2024 - Sekarang",
-      school: "SMK Walisongo Pecangaan",
-      description:
-        "Siswa jurusan Teknik Komputer dan Jaringan (TKJ). Mendalami ilmu jaringan, pengembangan perangkat lunak, dan administrasi sistem.",
-    },
-    {
-      id: 3,
-      year: "2025 - 2026",
-      school: "Sertifikasi & Pelatihan IT",
-      description:
-        "Aktif mengikuti berbagai kompetisi (LKS) dan pelatihan intensif untuk mengasah skill Web Development dan Manajemen Jaringan.",
-    },
-  ];
-
-  return (
-    <section
-      id="pendidikan"
-      className="w-10/12 mx-auto flex flex-col items-center mt-100"
-    >
-      <div className="w-xl text-center mb-20">
-        <h2 className="text-4xl font-semibold font-heading text-slate-900">
-          Riwayat Pendidikan
-        </h2>
-        <p className="leading-relaxed mt-8 text-slate-600">
-          Perjalanan belajarku yang membentuk dasar pengetahuanku di bidang
-          teknologi saat ini.
-        </p>
-      </div>
-
-      <div ref={containerRef} className="relative w-full mx-auto py-10 pl-8">
-        <div className="absolute left-0 top-0 w-1 h-full bg-slate-200 rounded-full overflow-hidden">
-          <motion.div
-            className="w-full bg-blue-500 origin-top h-full"
-            style={{ scaleY: scaleY }}
-          />
-        </div>
-
-        <div className="flex flex-col gap-30">
-          {educationData.map((item, index) => (
-            <div key={item.id} className="relative w-2xl">
-              <motion.div
-                className="absolute -left-41 top-5 w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-md z-10"
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: false, margin: "-100px" }}
-                transition={{ duration: 0.4 }}
-              />
-
-              <motion.div
-                className="w-full text-left pl-6"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, margin: "-100px" }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-              >
-                <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 group">
-                  <span className="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-bold tracking-wider mb-3">
-                    {item.year}
-                  </span>
-                  <h3 className="text-xl font-bold font-heading text-slate-800 group-hover:text-blue-600 transition-colors">
-                    {item.school}
-                  </h3>
-                  <p className="mt-3 text-slate-600 leading-relaxed text-sm">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 };
 

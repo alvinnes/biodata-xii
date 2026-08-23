@@ -1,3 +1,6 @@
+import AnimatedItem from "./AnimatedItem";
+import FadeContent from "./FadeContent";
+
 interface BlogItmesStruct {
   id: number;
   img: string;
@@ -45,22 +48,31 @@ const blogItems: BlogItmesStruct[] = [
 
 const BlogSection = () => {
   return (
-    <section id="blog" className="w-11/12 mx-auto py-30 mt-30">
-      <div className="w-xl">
-        <h2 className="text-4xl font-semibold font-heading text-slate-900">
-          Blog Eksplorasi
-        </h2>
-        <p className="leading-relaxed mt-8 text-slate-600">
-          Ruang untuk menuliskan apa yang sedang kupelajari saat ini. Di blog
-          ini, kamu akan menemukan berbagai tulisan, mulai dari tutorial
-          sederhana hingga rekam jejak eksplorasiku di dunia teknologi digital.
-        </p>
+    <section id="blog" className="w-11/12 mx-auto py-20 md:py-30 mt-10 md:mt-30">
+      <div className="w-full md:w-xl">
+        <AnimatedItem direction="horizontal" reverse={true}>
+          <h2 className="text-4xl font-semibold font-heading text-slate-900">
+            Blog Eksplorasi
+          </h2>
+        </AnimatedItem>
+        <AnimatedItem direction="horizontal" reverse={true} delay={0.3}>
+          <p className="leading-relaxed mt-8 text-slate-600">
+            Ruang untuk menuliskan apa yang sedang kupelajari saat ini. Di blog
+            ini, kamu akan menemukan berbagai tulisan, mulai dari tutorial
+            sederhana hingga rekam jejak eksplorasiku di dunia teknologi
+            digital.
+          </p>
+        </AnimatedItem>
       </div>
-      <div className="grid grid-cols-3 justify-between items-center gap-x-10 gap-y-15 mt-20 -ml-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-6 md:gap-x-10 md:gap-y-15 mt-10 md:mt-20 md:-ml-1">
         {blogItems.map((item) => (
-          <div
+          <FadeContent
             key={item.id}
-            className="w-110 h-85 rounded-md bg-slate-100 shadow-sm p-3"
+            blur={true}
+            duration={2000}
+            delay={0.3}
+            initialOpacity={0}
+            className="w-full h-auto min-h-[340px] md:h-85 rounded-md bg-slate-100 shadow-sm p-3"
           >
             <a target="_blank" href={item.link}>
               <img
@@ -75,7 +87,7 @@ const BlogSection = () => {
                 {item.description}
               </p>
             </a>
-          </div>
+          </FadeContent>
         ))}
       </div>
     </section>

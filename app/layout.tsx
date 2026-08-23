@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={cn(
-        "h-full scroll-smooth",
+        "h-full scroll-smooth overflow-x-hidden",
         "antialiased",
         montserrat.variable,
         "font-sans",

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
-    "@phosphor-icons/react": "github:phosphor-icons/react",
+    "@phosphor-icons/react": "^2.1.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gl-matrix": "^3.4.4",

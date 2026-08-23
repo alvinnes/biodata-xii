@@ -1,3 +1,5 @@
+import AnimatedItem from "./AnimatedItem";
+import FadeContent from "./FadeContent";
 import InfiniteMenu from "./InfiniteMenu";
 
 const itemsProject = [
@@ -28,22 +30,32 @@ const ProjectSection = () => {
   return (
     <section
       id="proyek"
-      className="flex flex-col pt-30 items-center w-full h-screen"
+      className="flex flex-col pt-20 md:pt-30 items-center w-full min-h-[80vh] md:h-screen"
     >
-      <div className="w-xl text-center">
-        <h2 className="text-4xl font-semibold font-heading text-slate-900">
-          Arsip Proyek Terbaik
-        </h2>
-        <p className="leading-relaxed mt-8 text-slate-600">
-          Bagiku, setiap proyek adalah kesempatan baru untuk memecahkan sebuah
-          masalah. Di bawah ini adalah kumpulan aplikasi web, studi kasus, dan
-          eksperimen yang telah aku kembangkan. Jangan ragu untuk melihat
-          demonya atau mengintip ke dalam repository kodenya!
-        </p>
+      <div className="w-11/12 md:w-xl text-center">
+        <AnimatedItem direction="vertical" reverse={true} delay={0.3}>
+          <h2 className="text-4xl font-semibold font-heading text-slate-900">
+            Arsip Proyek Terbaik
+          </h2>
+        </AnimatedItem>
+        <AnimatedItem direction="vertical" reverse={true}>
+          <p className="leading-relaxed mt-8 text-slate-600">
+            Bagiku, setiap proyek adalah kesempatan baru untuk memecahkan sebuah
+            masalah. Di bawah ini adalah kumpulan aplikasi web, studi kasus, dan
+            eksperimen yang telah aku kembangkan. Jangan ragu untuk melihat
+            demonya atau mengintip ke dalam repository kodenya!
+          </p>
+        </AnimatedItem>
       </div>
-      <div className="w-11/12 relative text-white mt-20">
+      <FadeContent
+        blur={true}
+        duration={2000}
+        delay={0.3}
+        initialOpacity={0}
+        className="w-11/12 relative text-white mt-10 md:mt-20"
+      >
         <InfiniteMenu items={itemsProject} scale={1} />
-      </div>
+      </FadeContent>
     </section>
   );
 };
