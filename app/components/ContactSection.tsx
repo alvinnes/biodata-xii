@@ -24,7 +24,7 @@ const ContactSection = () => {
         direction="vertical"
         className="w-full flex flex-col md:flex-row justify-center h-auto md:h-150 rounded-xl overflow-hidden shadow-xl md:shadow-none"
       >
-        <div className="w-full md:w-1/2 h-[300px] md:h-full bg-slate-900 relative before:absolute before:size-full before:left-0 before:bottom-0 before:bg-linear-to-t before:from-black/60 before:via-black/30 before:to-transparent">
+        <div className="w-full md:w-1/2 h-75 md:h-full bg-slate-900 relative before:absolute before:size-full before:left-0 before:bottom-0 before:bg-linear-to-t before:from-black/60 before:via-black/30 before:to-transparent">
           <img
             src="img/contact.jpg"
             alt="foto-contact"

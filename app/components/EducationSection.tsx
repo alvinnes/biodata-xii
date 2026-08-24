@@ -64,7 +64,7 @@ const EducationSection = () => {
         ref={containerRef}
         className="relative w-full max-w-4xl mx-auto py-10 px-2 md:px-4"
       >
-        <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 w-1 h-full bg-slate-200 rounded-full overflow-hidden">
+        <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-0 w-1 h-full bg-slate-200 rounded-full overflow-hidden">
           <motion.div
             className="w-full bg-blue-500 origin-top h-full"
             style={{ scaleY: scaleY }}
@@ -82,7 +82,7 @@ const EducationSection = () => {
                 } justify-end md:justify-between`}
               >
                 <motion.div
-                  className={`w-[85%] md:w-[45%] lg:w-[70%] ${isLeft ? "-ml-55 mr-0" : "ml-0 -mr-55"}`}
+                  className={`w-[85%] sm:w-[80%] md:w-[45%] lg:w-[70%] ${isLeft ? "md:-ml-55 md:mr-0" : "md:ml-0 md:-mr-55"}`}
                   initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false, margin: "-90px" }}
@@ -102,14 +102,14 @@ const EducationSection = () => {
                     <h3 className="text-lg md:text-xl font-bold font-heading text-slate-800 group-hover:text-blue-600 transition-colors">
                       {item.school}
                     </h3>
-                    <p className="mt-2 md:mt-3 text-slate-600 leading-relaxed text-sm">
+                    <p className="mt-2 md:mt-3 text-slate-600 leading-relaxed text-[0.8em] sm:text-sm">
                       {item.description}
                     </p>
                   </div>
                 </motion.div>
 
                 <motion.div
-                  className="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-md z-10"
+                  className="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 -ml-1.5 sm:ml-0 bg-blue-600 rounded-full border-4 border-white shadow-md z-10"
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: false, margin: "-100px" }}

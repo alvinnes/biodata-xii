@@ -24,20 +24,20 @@ const SkillsSection = () => {
           </h2>
         </AnimatedItem>
         <AnimatedItem direction="horizontal" reverse={true} delay={0.3}>
-          <p className="leading-relaxed w-xl mt-8 text-slate-600">
+          <p className="leading-relaxed w-11/12 sm:w-xl mt-8 text-slate-600">
             Memadukan logika pemrograman dengan keandalan sistem jaringan.
             Silakan jelajahi berbagai teknologi yang terus aku kembangkan.
           </p>
         </AnimatedItem>
       </div>
 
-      <div className="w-11/12 flex flex-col lg:flex-row relative justify-between items-center mt-10 lg:mt-20 gap-10 lg:gap-0">
+      <div className="sm:w-11/12 flex flex-col lg:flex-row relative justify-between items-center mt-10 lg:mt-20 gap-10 lg:gap-0">
         <FadeContent
           blur={true}
           duration={2000}
           delay={0.6}
           initialOpacity={0}
-          className="h-[400px] lg:h-150 w-full lg:w-auto flex justify-center lg:block"
+          className="h-100 lg:h-150 w-full lg:w-auto flex -ml-30 sm:ml-0 justify-start sm:justify-center lg:block"
         >
           <OptionWheel
             items={[
@@ -64,12 +64,12 @@ const SkillsSection = () => {
             soundUrl="/assets/sounds/click-soft.mp3"
             soundVolume={0.5}
             onChange={(index, item) => handleSkillsClick(index, item)}
-            className="w-full sm:w-[400px] lg:w-xl self-start"
+            className="w-full sm:w-100 lg:w-xl self-start"
           />
         </FadeContent>
         <AnimatedItem
           direction="horizontal"
-          className="w-full lg:w-8/12 h-[500px] lg:h-120 overflow-hidden rounded-3xl bg-slate-100/50 p-2 backdrop-blur-2xl border border-white/50 shadow-2xl relative"
+          className="w-full lg:w-8/12 h-125 lg:h-120 overflow-hidden rounded-3xl bg-slate-100/50 p-2 backdrop-blur-2xl border border-white/50 shadow-2xl relative"
         >
           <div
             className="h-full w-full overflow-y-auto p-6 flex flex-col"
@@ -82,7 +82,7 @@ const SkillsSection = () => {
               key={menuSkills}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-bold text-3xl mb-8 w-fit text-white rounded-2xl p-4 bg-linear-to-r from-blue-700 to-cyan-600 border-b border-slate-200/50"
+              className="font-bold text-xl sm:text-3xl mb-8 w-fit text-white rounded-2xl p-4 bg-linear-to-r from-blue-700 to-cyan-600 border-b border-slate-200/50"
             >
               {menuSkills}
             </motion.h2>
@@ -105,17 +105,17 @@ const SkillsSection = () => {
                         type: "spring",
                         stiffness: 100,
                       }}
-                      className="group flex items-start gap-4 p-4 rounded-2xl bg-white/60 border border-[#808080]/30 hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:bg-white transition-all duration-300"
+                      className="group flex items-center sm:items-start gap-4 p-4 rounded-2xl bg-white/60 border border-[#808080]/30 hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:bg-white transition-all duration-300"
                     >
                       <div className="flex-0 px-3 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-50 to-indigo-50 text-blue-500 group-hover:from-blue-500 group-hover:to-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm mt-0.5">
                         {data.icon}
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-bold text-slate-800 text-base">
+                        <span className="font-bold text-slate-800 text-[0.8em] sm:text-base">
                           {data.title}
                         </span>
                         {data.tech && (
-                          <span className="text-slate-500 text-sm leading-relaxed mt-1">
+                          <span className="text-slate-500 text-[0.7em] sm:text-sm leading-relaxed mt-1">
                             {data.tech}
                           </span>
                         )}

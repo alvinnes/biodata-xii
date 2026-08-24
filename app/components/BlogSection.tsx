@@ -48,7 +48,10 @@ const blogItems: BlogItmesStruct[] = [
 
 const BlogSection = () => {
   return (
-    <section id="blog" className="w-11/12 mx-auto py-20 md:py-30 mt-10 md:mt-30">
+    <section
+      id="blog"
+      className="w-11/12 mx-auto py-20 md:py-30 mt-10 md:mt-30"
+    >
       <div className="w-full md:w-xl">
         <AnimatedItem direction="horizontal" reverse={true}>
           <h2 className="text-4xl font-semibold font-heading text-slate-900">
@@ -64,7 +67,7 @@ const BlogSection = () => {
           </p>
         </AnimatedItem>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-6 md:gap-x-10 md:gap-y-15 mt-10 md:mt-20 md:-ml-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-x-10 gap-y-15 mt-10 md:mt-20 md:-ml-1">
         {blogItems.map((item) => (
           <FadeContent
             key={item.id}
@@ -72,7 +75,7 @@ const BlogSection = () => {
             duration={2000}
             delay={0.3}
             initialOpacity={0}
-            className="w-full h-auto min-h-[340px] md:h-85 rounded-md bg-slate-100 shadow-sm p-3"
+            className="w-full h-auto min-h-85 md:h-85 rounded-md bg-slate-100 shadow-sm p-3"
           >
             <a target="_blank" href={item.link}>
               <img

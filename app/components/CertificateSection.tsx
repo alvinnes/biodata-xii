@@ -81,29 +81,27 @@ const CertificateSection = () => {
               <div className="size-full absolute flex justify-center items-center text-white cursor-pointer opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500  left-0 bottom-0 bg-black/50">
                 <ExpandIcon className="size-10" />
               </div>
-              <div
-                className={`w-full h-screen bg-white/10 backdrop-blur-2xl fixed top-0 left-0 flex justify-center items-center transition-all duration-500 z-999 ${isClickedCertificate ? "opacity-100 visible" : "opacity-0 invisible"}`}
-              >
-                <div className="w-10/12 h-[80vh] rounded-xl relative shadow-xl bg-white">
-                  <button
-                    onClick={() =>
-                      setIsClickedCertificate(!isClickedCertificate)
-                    }
-                    className="absolute transition-all duration-500 hover:rotate-360 -top-3 -right-3 size-8 bg-slate-600 text-white rounded-full flex justify-center items-center cursor-pointer p-2"
-                  >
-                    <XIcon />
-                  </button>
-                  <img
-                    src={imgCertificate}
-                    alt="foto-sertifikat"
-                    className="size-full"
-                  />
-                </div>
-              </div>
             </div>
             <h3 className="font-semibold w-10/12 mt-5">{item.title}</h3>
           </FadeContent>
         ))}
+      </div>
+      <div
+        className={`w-full h-screen bg-white/10 backdrop-blur-2xl fixed top-0 left-0 flex justify-center items-center transition-all duration-500 z-999 ${isClickedCertificate ? "opacity-100 visible" : "opacity-0 invisible"}`}
+      >
+        <div className="w-10/12 h-[30vh] sm:h-[80vh] rounded-xl relative shadow-xl bg-white">
+          <button
+            onClick={() => setIsClickedCertificate(!isClickedCertificate)}
+            className="absolute transition-all duration-500 hover:rotate-360 -top-3 -right-3 size-8 bg-slate-600 text-white rounded-full flex justify-center items-center cursor-pointer p-2"
+          >
+            <XIcon />
+          </button>
+          <img
+            src={imgCertificate}
+            alt="foto-sertifikat"
+            className="size-full"
+          />
+        </div>
       </div>
     </section>
   );
