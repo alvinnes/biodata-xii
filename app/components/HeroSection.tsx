@@ -64,7 +64,7 @@ const HeroSection = () => {
                 Baca Selengkapnya
               </a>
             </button>
-            <button className="px-8 relative rounded-full border-blue-200 text-blue-700 overflow-hidden cursor-pointer before:size-full before:absolute before:left-0 before:bottom-0 before:bg-blue-50 before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition-all before:duration-500 border text-sm font-semibold">
+            <button className="px-8 relative rounded-full border-blue-200 text-blue-700 py-3 overflow-hidden cursor-pointer before:size-full before:absolute before:left-0 before:bottom-0 before:bg-blue-50 before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition-all before:duration-500 border text-sm font-semibold">
               <a
                 href="#proyek"
                 className="relative z-10 flex items-center gap-2"
