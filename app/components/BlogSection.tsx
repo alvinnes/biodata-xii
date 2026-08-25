@@ -44,6 +44,14 @@ const blogItems: BlogItmesStruct[] = [
       "Melanjutkan seri video sebelumnya, di video Part 4 kali ini kami akan membagikan tutorial cara mudah untuk melakukan konfigurasi VPN L2TP dan Reverse Proxy di router MikroTik.",
     link: "https://youtu.be/rimhDZ4t7OY?si=dYb9Htg83zqntN7P",
   },
+  {
+    id: 5,
+    img: "img/blogs/thumbnail-port-forwardding.jpg",
+    title: "🚀 PART 5: TUTORIAL PORT FORWARDING DI MIKROTIK",
+    description:
+      "Melanjutkan seri video sebelumnya, di video kali ini kami akan membagikan tutorial cara mudah untuk melakukan konfigurasi Port Forwarding (Destination NAT) di router MikroTik.",
+    link: "https://youtu.be/rimhDZ4t7OY?si=dYb9Htg83zqntN7P",
+  },
 ];
 
 const BlogSection = () => {
@@ -67,7 +75,7 @@ const BlogSection = () => {
           </p>
         </AnimatedItem>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-x-10 gap-y-15 mt-10 md:mt-20 md:-ml-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-10 mt-10 md:mt-20 md:-ml-1">
         {blogItems.map((item) => (
           <FadeContent
             key={item.id}
