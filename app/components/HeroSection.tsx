@@ -9,6 +9,7 @@ import {
   TiktokLogoIcon,
   XLogoIcon,
 } from "@phosphor-icons/react";
+import { number } from "motion";
 
 const HeroSection = () => {
   return (
@@ -138,4 +139,7 @@ const HeroSection = () => {
   );
 };
 
+
+
 export default HeroSection;
+
